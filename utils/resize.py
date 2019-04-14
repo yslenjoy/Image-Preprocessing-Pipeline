@@ -4,19 +4,6 @@
 import os
 from os.path import join
 from utils.make_sub_dir import make_sub_dir, folder_is_hidden
-# import shutil
-
-    
-# def folder_is_hidden(p):
-#     """ Helper function for os.listdir(). 
-#     Check where a file is a hidden file or not.
-#     """
-#     if os.name== 'nt':
-#         import win32api, win32con
-#         attribute = win32api.GetFileAttributes(p)
-#         return attribute & (win32con.FILE_ATTRIBUTE_HIDDEN | win32con.FILE_ATTRIBUTE_SYSTEM)
-#     else:
-#         return p.startswith('.') #linux-osx
 
 def imagemagick_resize(input, output):
     """Resize images into 224 * 224 using imagemagick,
