@@ -1,4 +1,5 @@
 from utils.resize import imagemagick_resize
+from utils.io_data_tools import save_as_numpy_file
 import os
 import argparse
 from augmentation import augmentor
@@ -23,8 +24,9 @@ def main():
     # call imagemagick_resize() when specified in args or no image is resized
     if args.augment_img or os.path.isdir(augm_path) == False:
         os.makedirs('imgs_de_augment', exist_ok=True)
-        augmentor(img_path, augm_path)
-
+        augmentor(resize_path, augm_path)
+    
+    # save_as_numpy_file(augm_path, 'imgs_npy_file')
     
 if __name__ == '__main__':
     main()

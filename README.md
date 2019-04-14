@@ -16,3 +16,4 @@ magick: Corrupt JPEG data: premature end of data segment `/Users/shuilingyu/Down
 	- [ ] CNN size (224, 224, 3) default: to be changed in `utils\resize.py`, convert to grey scale if needed
 	- [ ] Image augementation using Keras or Pytorch
 	- [ ] Augementation: no noise can be add in Augmentor library, considerint other weather factor(e.g. sunny, snow, rainny)
+	- [ ] Train test split
