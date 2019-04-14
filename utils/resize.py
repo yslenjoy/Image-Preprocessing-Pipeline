@@ -7,7 +7,10 @@ from os.path import join
 import shutil
     
 def folder_is_hidden(p):
-    # find whether the file is hidden
+    """ 
+    Helper function for os.listdir(). 
+    Check where a file is a hidden file or not.
+    """
     if os.name== 'nt':
         import win32api, win32con
         attribute = win32api.GetFileAttributes(p)
@@ -16,6 +19,17 @@ def folder_is_hidden(p):
         return p.startswith('.') #linux-osx
 
 def imagemagick_resize(input, output):
+    """
+    Resize images into 224 * 224 using imagemagick,
+    resized images are stored in imgs_de_resized/.
+
+    Args:
+        input(string): original image directory. In input, different kinds of vegetations are stored in subdirectories (e.g input/corn/image1.jpg)
+        output(string): resized image directory. In output, different kinds of vegetations are stored in subdirectories (e.g output/corn/image1.jpg)
+    Returns:
+        None
+    """
+
     # find the types of vegetations
     types = [f for f in os.listdir(input) if not folder_is_hidden(f)]
     pwd = os.path.dirname(os.getcwd())

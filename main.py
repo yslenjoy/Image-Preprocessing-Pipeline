@@ -12,13 +12,14 @@ def main():
     
     img_path = os.path.join(os.getcwd(),'imgs_de')
     resize_path = os.path.join(os.getcwd(),'imgs_de_resized')
+
+    # call imagemagick_resize() when specified in args or no image is resized
     if args.resize_img or os.path.isdir(resize_path) == False:
-        # Resize images into 224 * 224 using imagemagick,
-        # resized images are stored in imgs_de_resized/
         os.makedirs('imgs_de_resized', exist_ok=True)
         imagemagick_resize(img_path, resize_path)
-    
+
 
 if __name__ == '__main__':
     main()
     print("\nDone! :)") 
+    print(repr(imagemagick_resize.__doc__))
