@@ -5,7 +5,10 @@
 
 - [ ] imagemagic install guide
 - [ ] requirements.txt (can be done automatically)
+	- [ ] `pip install Augmentor`
 - [ ] the time to call imagemagick_resize: python3 main.py -R or when no images are resized
+	* `magick: Premature end of JPEG file `/Users/shuilingyu/Downloads/Granular/imgs_de/corn/30812628187_65a340080c_z.jpg' @ warning/jpeg.c/JPEGWarningHandler/396.
+magick: Corrupt JPEG data: premature end of data segment `/Users/shuilingyu/Downloads/Granular/imgs_de/corn/30812628187_65a340080c_z.jpg' @ warning/jpeg.c/JPEGWarningHandler/396.`
 - [ ] normalization: use CV considering needed to read data again when augementation
 - [ ] cv2: read image in b,g,r mode
 

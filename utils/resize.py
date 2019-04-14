@@ -1,26 +1,25 @@
-"""
-Use imagemagick for command line image transformation (resize)
+"""Use imagemagick for command line image transformation (resize)
 """
 
 import os
 from os.path import join
-import shutil
+from utils.make_sub_dir import make_sub_dir, folder_is_hidden
+# import shutil
+
     
-def folder_is_hidden(p):
-    """ 
-    Helper function for os.listdir(). 
-    Check where a file is a hidden file or not.
-    """
-    if os.name== 'nt':
-        import win32api, win32con
-        attribute = win32api.GetFileAttributes(p)
-        return attribute & (win32con.FILE_ATTRIBUTE_HIDDEN | win32con.FILE_ATTRIBUTE_SYSTEM)
-    else:
-        return p.startswith('.') #linux-osx
+# def folder_is_hidden(p):
+#     """ Helper function for os.listdir(). 
+#     Check where a file is a hidden file or not.
+#     """
+#     if os.name== 'nt':
+#         import win32api, win32con
+#         attribute = win32api.GetFileAttributes(p)
+#         return attribute & (win32con.FILE_ATTRIBUTE_HIDDEN | win32con.FILE_ATTRIBUTE_SYSTEM)
+#     else:
+#         return p.startswith('.') #linux-osx
 
 def imagemagick_resize(input, output):
-    """
-    Resize images into 224 * 224 using imagemagick,
+    """Resize images into 224 * 224 using imagemagick,
     resized images are stored in imgs_de_resized/.
 
     Args:
@@ -30,17 +29,14 @@ def imagemagick_resize(input, output):
         None
     """
 
-    # find the types of vegetations
-    types = [f for f in os.listdir(input) if not folder_is_hidden(f)]
-    pwd = os.path.dirname(os.getcwd())
+    # make new sub sub dir and find the name of sub dir
+    types = make_sub_dir(input, output)
+
     for t in types:
         print('Converting the {} images...'.format(t))
         # create related type folder
         in_path = join(input, t)
         out_path = join(output, t)
-        if os.path.exists(out_path):
-            shutil.rmtree(out_path)
-        os.makedirs(out_path, exist_ok=True)
 
         # use imagemagick in command line to resize image into 224 * 224 (to fit a (224, 224, 3) CNN)
         images = [i for i in os.listdir(in_path) if not folder_is_hidden(i)]
