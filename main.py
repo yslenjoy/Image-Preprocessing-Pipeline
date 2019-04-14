@@ -1,5 +1,6 @@
 from utils.resize import imagemagick_resize
 import os
+import sys
 
 def main():
     """
@@ -13,6 +14,7 @@ def main():
     resize_path = os.path.join(os.getcwd(),'imgs_de_resized')
 
     imagemagick_resize(img_path, resize_path)
+    print()
 
 if __name__ == '__main__':
     main()

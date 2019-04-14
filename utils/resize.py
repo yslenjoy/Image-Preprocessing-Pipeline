@@ -20,6 +20,7 @@ def imagemagick_resize(input, output):
     types = [f for f in os.listdir(input) if not folder_is_hidden(f)]
     pwd = os.path.dirname(os.getcwd())
     for t in types:
+        print('Converting the {} images...'.format(t))
         # create related type folder
         in_path = join(input, t)
         out_path = join(output, t)
