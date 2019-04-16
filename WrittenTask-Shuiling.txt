@@ -1,0 +1,49 @@
+
+@ Author: Shuiling Yu (yslenjoy@gmail.com)
+
+1. Training Data Acquisition and Storage
+	
+	1.1 Possible open source dataset
+		https://www.plant-image-analysis.org/dataset (Plant image analysis dataset)
+		https://github.com/cwfid/dataset (Crop/ Weed Field Image Dataset, with segmentation mask and plant type)
+
+	1.2 Data storage
+	Data is stored on either local disk or cloud.
+	Annotation should be added if any.
+
+
+2. Dataset Curation
+
+	Possible curation tools (https://www.bitss.org/wp-content/uploads/2014/06/tools-and-resources-for-data-curation-presentation3.pdf):
+	DMPTool, DataUp, Dash, WAS
+
+3. Model development
+
+	3.1 Dataset preprocessing
+		3.1.1 Extract label information
+		3.1.2 Image resizing (cropping), random sampling, normalization and augmentation. 
+			  Keras has convenient API for this process. (https://keras.io/preprocessing/image/)
+
+	3.2 Construct and train suitable model.
+		3.2.1 Possible ML models: 
+			  Residual Net (easy to optimize and gain accuracy from increased depth), 
+			  RNN, CNN...
+		3.2.2 Parameter selection: initial weights, SGD batch size, iteration time, learning rate, weight decay and momentum.
+
+	3.3 Model performance analysis based on validation dataset
+		Use validation dataset to analysis trained model performance.
+		Possible metric: confusion matrix.
+
+	3.4 Model prediction and analysis
+		Get prediction results and calculate prediction accuracy.
+
+4. Moving Models to Production
+	
+	4.1 Prepare documentations for publication
+	4.2 Prepare pre-trained weights
+
+5. Serving Predictions to the Client
+	
+	5.1 Build a web-serve to evaluate client-submitted file automatically.
+	5.2 Prepare demo or instructional tutorials.
+

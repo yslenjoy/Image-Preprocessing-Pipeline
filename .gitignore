@@ -38,4 +38,4 @@ Thumbs.db
 
 imgs_de_augment/
 imgs_de_resized/
-ImageProcessingPipeline.ipynb
+__pycache__/

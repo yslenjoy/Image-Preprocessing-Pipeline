@@ -7,7 +7,7 @@ from os.path import join
 from utils.make_sub_dir import make_sub_dir, folder_is_hidden
 from PIL import ImageFile
 
-# To avoid OSError: image file is truncated
+# To avoid 'OSError: image file is truncated'
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 def augmentor(input, output,

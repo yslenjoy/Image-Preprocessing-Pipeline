@@ -45,5 +45,5 @@ def save_as_numpy_file(img_dir, out_dir):
         for j in range(len(images)):
             output[j] = load_and_normalize(in_path, images[j])
         np.save('{}_np_file'.format(out_path), output)
-        break
+        print('{}_np_file saved.'.format(out_path))
 

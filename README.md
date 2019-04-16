@@ -3,17 +3,83 @@
 
 **@author**: Shuiling Yu
 
-- [ ] imagemagic install guide
-- [ ] requirements.txt (can be done automatically)
-	- [ ] `pip install Augmentor`
-- [ ] the time to call imagemagick_resize: python3 main.py -R or when no images are resized
-	* `magick: Premature end of JPEG file `/Users/shuilingyu/Downloads/Granular/imgs_de/corn/30812628187_65a340080c_z.jpg' @ warning/jpeg.c/JPEGWarningHandler/396.
-magick: Corrupt JPEG data: premature end of data segment `/Users/shuilingyu/Downloads/Granular/imgs_de/corn/30812628187_65a340080c_z.jpg' @ warning/jpeg.c/JPEGWarningHandler/396.`
-- [ ] normalization: use CV considering needed to read data again when augementation
-- [ ] cv2: read image in b,g,r mode
 
-* further change if necessary: 
-	- [ ] CNN size (224, 224, 3) default: to be changed in `utils\resize.py`, convert to grey scale if needed
-	- [ ] Image augementation using Keras or Pytorch
-	- [ ] Augementation: no noise can be add in Augmentor library, considerint other weather factor(e.g. sunny, snow, rainny)
-	- [ ] Train test split
+## Prerequisites
+* Set up [imagemagic](https://www.imagemagick.org/script/index.php) command line tools (macOS)
+    ```
+    brew install imagemagic
+    ```
+* Python packages
+    * [Augmentor](https://augmentor.readthedocs.io/en/master/index.html)
+    ```
+    pip install Augmentor
+    ```
+    * Other libraries: `cv2, numpy, pandas, PIL`
+
+## Run the program
+```
+cd [partent directory of imgs_de]
+python3 main.py
+```
+The command above will run **ALL** 4 workflow steps mentioned below. For seperate run of different steps, use different arguments when running the command.
+
+## Workflow
+### Image Processing Pipeline (Resize)
+Resize the original image datasets in `imgs_de` into new images with size 224\*224 to fit a convolutional neural network with input dimension (224, 224, 3):
+```
+python3 main.py -R
+```
+### Image Augmentation
+Library [Augmentor](https://augmentor.readthedocs.io/en/master/index.html) is used to augment images in following ways:
+* Flip
+* Rotation
+* Zoom
+* Change brightness
+* Change saturation
+* Change contrast
+* Image distortion
+
+To augment and sample the images from `imgs_de_resized/`, enter in command line:
+```
+python3 main.py -A
+```
+The sample generated are stored in `imgs_de_augment/` by different types of vegetations.
+
+Detailed augmentation setting can be changed in `augmentor()` function in `main.py`.
+
+### Store Images in `.npy` File (Optional)
+Once the images are augmented, by entering:
+```
+python3 main.py -S
+```
+
+The augmented images will be read in `B, G, R` channal using `cv2` and pixels are normalized into range(0, 1).
+
+After normalization, images information are stored as `.npy` file in `imgs_npy_file`, 
+which can be passed as numpy array into the machine learning model by use python script `np.load([file_name])`.
+
+The stored numpy array is in shape `(n, 224, 224, 3)`, where `n` is the number of images in each type (i.e, corn, soybean), and the image channel sequence is `B, G, R`.
+
+### Geolocation Mapping
+Extract the geolocation metadata (for now, only the lattitude and longitude information) contained in the `Exif` of each image. 
+Note that not all images include geolocation data.
+
+By entering: 
+```
+python3 main.py -P
+```
+Geolocation information of images from `imgs_de` are saved into `imgs_map/image_geo_info.csv` in terms of:
+* Lattitude
+* Longitude
+* Image name
+* Vegation type (i.e. corn, soybean)
+
+A map is also saved as `imgs_map/location_map.jpg`:
+![visualize](location_map.jpg)
+
+## Further Improvements
+- [ ] Resize or save .npy file based on customized CNN dimension
+- [ ] Image augementation connects with `Keras` or `Pytorch`
+- [ ] Advanced augementation. `Augmentor` cannot add noise to images, other augementation methods considering weather condition (i.e. sunny, snow) can also be added using other packages.
+- [ ] Train test split for dataset.
+- [ ] Map points on a basemap. Right now I have trouble in installing `Basemap` package, better visualization can be achieved after the problem is solved.
