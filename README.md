@@ -15,7 +15,6 @@ With the increasing popularity of cellphones, farmers can take pictures of the c
 ## File explanation
 * Image file format:
 	- Original images should be stored in `imgs_de` with crop type as the name of the subfolder
-* 
 
 ## Prerequisites
 * Set up [imagemagic](https://www.imagemagick.org/script/index.php) command line tools (macOS)
