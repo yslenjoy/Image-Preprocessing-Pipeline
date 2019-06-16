@@ -1,8 +1,16 @@
-# Image Processing Pipeline Interview Challenge
+# Crop Image Processing Pipeline
 ---
 
 **@author**: Shuiling Yu
 
+## Introduction
+With the increasing popularity of cellphones, farmers can take pictures of the crops, which can be used as the input of data science models to integrate more technology in to agricultural operations.
+
+**Objectives**
+1. Information extraction from raw images.
+2. Prepare input for deep learning model. (Rather than develop the model)
+3. Develop reproducible pipline and detailed documentation.
+4. Image geolocation visulization.
 
 ## Prerequisites
 * Set up [imagemagic](https://www.imagemagick.org/script/index.php) command line tools (macOS)
