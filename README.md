@@ -6,11 +6,16 @@
 ## Introduction
 With the increasing popularity of cellphones, farmers can take pictures of the crops, which can be used as the input of data science models to integrate more technology in to agricultural operations.
 
-**Objectives**
+## Objectives
 1. Information extraction from raw images.
-2. Prepare input for deep learning model. (Rather than develop the model)
-3. Develop reproducible pipline and detailed documentation.
-4. Image geolocation visulization.
+2. Prepare input for deep learning model with input dimension (224, 224, 3). (Rather than develop the model)
+3. Develop reproducible pipline and detailed documentation. Pipline should be extended with image augmentation techniques.
+4. Visulize the location of the images, not all the images include geolocation data.
+
+## File explanation
+* Image file format:
+	- Original images should be stored in `imgs_de` with crop type as the name of the subfolder
+* 
 
 ## Prerequisites
 * Set up [imagemagic](https://www.imagemagick.org/script/index.php) command line tools (macOS)
@@ -29,7 +34,7 @@ With the increasing popularity of cellphones, farmers can take pictures of the c
 cd [partent directory of imgs_de]
 python3 main.py
 ```
-The command above will run **ALL** 4 workflow steps mentioned below. For seperate run of different steps, use different arguments when running the command.
+The command above will run **ALL** 4 workflow steps mentioned below. For seperate run of different steps, use different arguments when running the command. If run seperately, the sequence of the different steps should be followed.
 
 ## Workflow
 ### Image Processing Pipeline (Resize)
